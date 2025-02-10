@@ -1,0 +1,7 @@
+nose
+sphinx
+rdkit
+csv
+numpy
+PIL
+matplotlib
