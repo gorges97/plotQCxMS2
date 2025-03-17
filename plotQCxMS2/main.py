@@ -10,7 +10,10 @@ import os
 import rdkit
 from rdkit import Chem
 from rdkit.Chem import rdDetermineBonds
-from rdkit.Chem import Draw 
+from rdkit.Chem import Draw #
+from rdkit.Chem import AllChem
+from rdkit.Chem.Draw import rdMolDraw2D
+
 #import tools
 
 # Call the function when the script runs
@@ -177,10 +180,10 @@ def get_arrow_height():
 
 
 def find_fragment_mass(filename: str, fragment_dir: str) -> float:
-    print(f"Searching for fragment {fragment_dir} in {filename}")
+    #print(f"Searching for fragment {fragment_dir} in {filename}")
     # if fragment dir is isomer go one level up
     fragment_dir = re.sub(r'p\d+$', '', fragment_dir)
-    print(f"Searching for fragment {fragment_dir} in {filename}")
+    #print(f"Searching for fragment {fragment_dir} in {filename}")
     if (fragment_dir == ''):
         fragment_dir = '.'
     if (fragment_dir == '.'):
@@ -359,8 +362,11 @@ def depict_xyz(infile):
         rdkit.Chem.rdDetermineBonds.DetermineBonds(mol, charge=1)
         print("Bonds successfully detected")
     except:
-        print("Bonds could not be detected, depiciting only connectivity")
+        print("Bonds could not be detected, depict only connectivity")
         rdkit.Chem.rdDetermineBonds.DetermineConnectivity(mol, charge=1)
+
+    AllChem.Compute2DCoords(mol)
+    rdMolDraw2D.PrepareMolForDrawing(mol, kekulize=False)
 
     # Draw the molecule and save it to a file
     Chem.Draw.MolToFile(mol, 'mol.png', size=(300, 300))
