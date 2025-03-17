@@ -10,6 +10,6 @@ To visualize the spectrum and fragmentation pathways of a QCxMS2 output file, ru
 
 .. code::
         
-        main.py  
+        python main.py  
 
 This program will generate a plot of the spectrum and fragmentation pathways of the QCxMS2 output file.
