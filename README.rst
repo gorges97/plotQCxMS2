@@ -11,7 +11,7 @@ With `mamba`, a matching Python environment can be set up and activated as follo
 ```
 git clone https://github.com/gorges97/plotQCxMS2/
 cd plotQCxMS2
-mamba create -f environment.yml
+mamba env create -f environment.yml
 mamba activate plotQCxMS2
 ```
 
